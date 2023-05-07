@@ -89,7 +89,7 @@ class UI {
       repository.innerHTML = ` 
       <td scope="col" >${element.name}</td>
       <td scope="col" >${date} ${time}</td>
-      <td scope="col" ><a href='element.html_url'>${element.html_url}</a></td>
+      <td scope="col" ><a href='${element.html_url}'>${element.html_url}</a></td>
       `;
       this.reposElement.appendChild(repository);
     });
