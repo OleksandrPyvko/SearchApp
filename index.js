@@ -184,6 +184,7 @@ const run = () => {
       ui.renderUserRepos(userRepos);
       ui.showRepos();
     } catch (error) {
+      ui.hideRepos();
       console.log('error', error);
       ui.renderError(error);
     } finally {
