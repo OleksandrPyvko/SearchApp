@@ -24,13 +24,27 @@ class UI {
     this.hideRepos();
   }
 
+  debounce(fn, delay) {
+    let timeoutId;
+    return function (...args) { 
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      };
+      timeoutId = setTimeout(() => {
+        fn.apply(this, args);
+      }, delay)
+    }
+  }
+
+
   onInputChange(callback) {
-    this.searchUserInputElement.addEventListener('keyup', (event) => {
+    this.searchUserInputElement.addEventListener('keyup', this.debounce((event) => {
       this.searchUserInput = event.target.value.trim();
+      
       if (callback) {
         callback(this.searchUserInput);
       }
-    });
+    }, 1000));
   }
 
   onFormSubmit(callback) {
@@ -192,7 +206,8 @@ const run = () => {
     }
   };
 
-  ui.onInputChange();
+  
+  ui.onInputChange(searchUser);
   ui.onFormSubmit(searchUser);
 };
 
